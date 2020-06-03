@@ -9,7 +9,8 @@ use prettytable::{
 };
 use regex::Regex;
 use std::cmp::Ordering;
-use std::{env, fs, path};
+use std::io::Read;
+use std::{env, fs, io, path};
 
 fn main() {
     // read a file
@@ -92,4 +93,7 @@ fn main() {
 
     // Print the table to stdout
     table.printstd();
+
+    // wait for enter before exiting
+    let _ = io::stdin().read(&mut [0u8]).unwrap();
 }
