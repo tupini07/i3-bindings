@@ -7,7 +7,6 @@ See [here](https://i3wm.org/docs/userguide.html#configuring) for locations of co
 
 ## Potential-extensions
 
-- read configuration file from dynamic location (based on what is said in the documentation)
 - provide option to specify custom config location
 - provide option to print bindings as _csv_ so that they can potentially be processed by another
   application.

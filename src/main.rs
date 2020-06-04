@@ -8,18 +8,40 @@ use prettytable::{
     Cell, Row, Table,
 };
 use regex::Regex;
+use std::borrow::Borrow;
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::io::Read;
 use std::{env, fs, io, path};
 
 fn main() {
+    let home_dir_path = dirs::home_dir().unwrap();
+    let home_dir = home_dir_path.to_str().unwrap();
+
+    let config_files = vec![
+        format!("{}/.config/i3/config", home_dir),
+        format!("{}/.i3/config", home_dir),
+        "/etc/i3/config".to_string(),
+    ];
+
+    let existing_files: Vec<_> = config_files
+        .iter()
+        .map(|e| path::Path::new(e))
+        .filter(|&e| e.exists())
+        .collect();
+
+    let config_file_to_use = existing_files
+        .get(0)
+        .expect("There is no usable config file")
+        .canonicalize()
+        .unwrap();
+
     // read a file
     let file_path = dirs::home_dir()
         .unwrap()
         .join(path::Path::new(".config/i3/config"));
 
-    let raw_contents = fs::read_to_string(file_path.canonicalize().unwrap())
+    let raw_contents = fs::read_to_string(config_file_to_use)
         .expect("Something went wrong when reading the file");
 
     #[derive(Debug)]
@@ -77,7 +99,7 @@ fn main() {
     main_table.set_titles(row!["Category", "Actual Binding"]);
 
     let mut sorted_vec: Vec<_> = bindings_map.iter_mut().collect();
-    sorted_vec.sort_by(|a,b| a.0.cmp(b.0));
+    sorted_vec.sort_by(|a, b| a.0.cmp(b.0));
 
     for (&category, bindings_for_category) in sorted_vec.iter_mut() {
         if bindings_for_category.len() == 0 {
