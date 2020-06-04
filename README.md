@@ -11,6 +11,8 @@ See [here](https://i3wm.org/docs/userguide.html#configuring) for locations of co
 - provide option to specify custom config location
 - provide option to print bindings as _csv_ so that they can potentially be processed by another
   application.
+- provide an option that makes the application wait for a keypress instead of doing it by default
+    - new default should be just print to the stdout
 - ability to sort bindings by other attributes:
     - name
     - type
@@ -22,7 +24,7 @@ See [here](https://i3wm.org/docs/userguide.html#configuring) for locations of co
 
 ## How to use
 
-*Categories:* for categories to be printed as in the example below, you need to add comments in
+**Categories:** for categories to be printed as in the example below, you need to add comments in
 your i3 config that specify the category for a group of bindings. All bindings below the comment
 will have the specified category until a new one is specified. The default category is `default`.
 For example:
@@ -37,8 +39,12 @@ bindsym $mod+Mod1+h split h
 bindsym $mod+Mod1+v split v
 
 # Category: Some other category
-.....
+...etc...
 ```
+
+Note that all comments in the file are completely ignored except for those about a `Category: ` (which are
+used to define categories) as well as the comments on the same line as a binding (which are shown as part
+of the command in the table).
 
 ## Example
 
