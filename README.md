@@ -11,6 +11,12 @@ See [here](https://i3wm.org/docs/userguide.html#configuring) for locations of co
 - provide option to specify custom config location
 - provide option to print bindings as _csv_ so that they can potentially be processed by another
   application.
+- ability to sort bindings by other attributes:
+    - name
+    - type
+    - binding (default)
+    - do not sort (leave them in the order they're defined)
+- ability to sort categories or not (leave them in the order they're defined)    
 - print information about rules:
     - number, which key is $mod`
 
@@ -82,8 +88,8 @@ When executed, the tool will read your i3 config file and print something like t
 ║          ║ Symbol  $mod+$alt+q            fish -c ask-and-run-command-in-new-term                                           ║
 ║          ║ Symbol  $mod+$alt+r            alacritty -e ranger                                                               ║
 ║          ║ Symbol  $mod+$alt+s            spotify-wrapper                                                                   ║
-║          ║ Code    $mod+34                picom		 #34 - [                                                              ║
-║          ║ Code    $mod+35                killall picom	 #35 - ]                                                          ║
+║          ║ Code    $mod+34                picom            #34 - [                                                          ║
+║          ║ Code    $mod+35                killall picom    #35 - ]                                                          ║
 ║          ║ Code    $mod+Shift+35          ~/.config/polybar/launch.sh                                                       ║
 ║          ║ Symbol  $mod+equal             gaps inner all plus 5                                                             ║
 ║          ║ Symbol  $mod+minus             gaps inner all minus 5                                                            ║
