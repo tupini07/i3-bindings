@@ -4,7 +4,7 @@ use std::str::FromStr;
 
 #[derive(Clap, PartialEq, Debug)]
 pub enum SortDimensions {
-    Category,
+    Command,
     Type,
     Binding,
     NoSort,

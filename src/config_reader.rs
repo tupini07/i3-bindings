@@ -97,11 +97,12 @@ fn get_list_of_i3bindings_from_content(
     }
 
     // sort based on options
-    if opts.sort_dim != SortDimensions::NoSort && opts.sort_dim != SortDimensions::Category {
+    if opts.sort_dim != SortDimensions::NoSort {
         for (k, bindings) in bindings_map.iter_mut() {
             bindings.sort_by(|a, b| match opts.sort_dim {
                 SortDimensions::Type => a.binding_type.cmp(&b.binding_type),
                 SortDimensions::Binding => a.binding.cmp(&b.binding),
+                SortDimensions::Command => a.command.cmp(&b.command),
                 _ => Ordering::Greater,
             });
         }

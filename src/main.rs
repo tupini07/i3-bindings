@@ -25,6 +25,7 @@ fn main() {
     let bindings = config_reader::read_bindings(&opts);
     let table = table_adapter::build_table_from_bindings(bindings);
     drawers::table_drawer::draw(table);
+    // https://github.com/phsym/prettytable-rs#user-content-csv-importexport
 
     if opts.block {
         // wait for enter before exiting
