@@ -3,11 +3,14 @@ extern crate prettytable;
 extern crate dirs;
 extern crate regex;
 
+mod cli;
+
 use prettytable::{
     format::{self, TableFormat},
     Cell, Row, Table,
 };
 use regex::Regex;
+
 use std::borrow::Borrow;
 use std::cmp::Ordering;
 use std::collections::HashMap;
@@ -15,6 +18,9 @@ use std::io::Read;
 use std::{env, fs, io, path};
 
 fn main() {
+    cli::parse_cli_arguments();
+    panic!();
+    /////
     let home_dir_path = dirs::home_dir().unwrap();
     let home_dir = home_dir_path.to_str().unwrap();
 
@@ -41,8 +47,8 @@ fn main() {
         .unwrap()
         .join(path::Path::new(".config/i3/config"));
 
-    let raw_contents = fs::read_to_string(config_file_to_use)
-        .expect("Something went wrong when reading the file");
+    let raw_contents =
+        fs::read_to_string(config_file_to_use).expect("Something went wrong when reading the file");
 
     #[derive(Debug)]
     struct I3Binding {
