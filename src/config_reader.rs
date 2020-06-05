@@ -72,6 +72,13 @@ fn get_list_of_i3bindings_from_content(
             let caps = capture_category.captures(line).unwrap();
             last_category = caps.name("category").unwrap().as_str();
         } else if capture_exec.is_match(line) {
+            // if we're only interested in one category then skip everything that is not said category
+            if let Some(exclusive_category) = &opts.exclusive_category {
+                if exclusive_category != last_category {
+                    continue;
+                }
+            }
+
             let caps = capture_exec.captures(line).unwrap();
             let binding_type = match caps.name("binding_type").unwrap().as_str() {
                 "bindsym" => "Symbol",

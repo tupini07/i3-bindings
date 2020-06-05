@@ -27,6 +27,9 @@ pub struct AppOptions {
     // the dimension along which to sort the results
     #[clap(short, long, arg_enum, default_value = "binding")]
     pub sort_dim: SortDimensions,
+    // if specified then only bindings of this category will be shown
+    #[clap(short, long)]
+    pub exclusive_category: Option<String>,
 }
 
 pub fn parse_cli_arguments() -> AppOptions {
@@ -39,6 +42,7 @@ pub fn parse_cli_arguments() -> AppOptions {
     dbg!(&opts.csv);
     dbg!(&opts.block);
     dbg!(&opts.sort_dim);
+    dbg!(&opts.exclusive_category);
 
     opts
 }
