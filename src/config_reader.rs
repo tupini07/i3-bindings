@@ -1,16 +1,17 @@
 extern crate regex;
-use crate::cli::AppOptions;
+use crate::cli::{AppOptions, SortDimensions};
 use regex::Regex;
+use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::{env, fs, io, path};
 
 #[derive(Debug)]
 pub struct I3Binding {
-    category: String,
-    binding_type: String,
-    binding: String,
-    command: String,
+    pub category: String,
+    pub binding_type: String,
+    pub binding: String,
+    pub command: String,
 }
 
 fn get_proper_config_file(opt: &AppOptions) -> PathBuf {
@@ -53,7 +54,10 @@ fn get_filtered_config_file_contents(file_path: PathBuf) -> Vec<String> {
         .collect()
 }
 
-fn get_list_of_i3bindings_from_content(content: Vec<String>) -> Vec<I3Binding> {
+fn get_list_of_i3bindings_from_content(
+    content: Vec<String>,
+    opts: &AppOptions,
+) -> HashMap<String, Vec<I3Binding>> {
     let mut last_category = "default";
     let mut bindings: Vec<I3Binding> = Vec::new();
 
@@ -83,12 +87,32 @@ fn get_list_of_i3bindings_from_content(content: Vec<String>) -> Vec<I3Binding> {
         }
     }
 
-    bindings
+    let mut bindings_map: HashMap<String, Vec<I3Binding>> = HashMap::new();
+    for e in bindings {
+        if !bindings_map.contains_key(&e.category) {
+            bindings_map.insert(e.category.clone(), Vec::new());
+        }
+
+        bindings_map.get_mut(&e.category).unwrap().push(e);
+    }
+
+    // sort based on options
+    if opts.sort_dim != SortDimensions::NoSort && opts.sort_dim != SortDimensions::Category {
+        for (k, bindings) in bindings_map.iter_mut() {
+            bindings.sort_by(|a, b| match opts.sort_dim {
+                SortDimensions::Type => a.binding_type.cmp(&b.binding_type),
+                SortDimensions::Binding => a.binding.cmp(&b.binding),
+                _ => Ordering::Greater,
+            });
+        }
+    }
+
+    bindings_map
 }
 
-pub fn read_config(opt: &AppOptions) -> Vec<I3Binding> {
+pub fn read_bindings(opt: &AppOptions) -> HashMap<String, Vec<I3Binding>> {
     let config_file_to_use = get_proper_config_file(&opt);
     let mut filtered_lines = get_filtered_config_file_contents(config_file_to_use);
 
-    get_list_of_i3bindings_from_content(filtered_lines)
+    get_list_of_i3bindings_from_content(filtered_lines, &opt)
 }
