@@ -2,6 +2,7 @@ extern crate regex;
 use crate::cli::AppOptions;
 use regex::Regex;
 use std::collections::HashMap;
+use std::path::{Path, PathBuf};
 use std::{env, fs, io, path};
 
 #[derive(Debug)]
@@ -12,7 +13,7 @@ pub struct I3Binding {
     command: String,
 }
 
-pub fn read_config(opt: &AppOptions) -> Vec<I3Binding> {
+fn get_proper_config_file(opt: &AppOptions) -> PathBuf {
     let home_dir_path = dirs::home_dir().unwrap();
     let home_dir = home_dir_path.to_str().unwrap();
 
@@ -33,21 +34,28 @@ pub fn read_config(opt: &AppOptions) -> Vec<I3Binding> {
         .filter(|&e| e.exists())
         .collect();
 
-    let config_file_to_use = existing_files
+    existing_files
         .get(0)
         .expect("There is no usable config file")
         .canonicalize()
-        .unwrap();
-
-    // read a file
-    let file_path = dirs::home_dir()
         .unwrap()
-        .join(path::Path::new(".config/i3/config"));
+}
 
+fn get_filtered_config_file_contents(file_path: PathBuf) -> Vec<String> {
     let raw_contents =
-        fs::read_to_string(config_file_to_use).expect("Something went wrong when reading the file");
-
+        fs::read_to_string(file_path).expect("Something went wrong when reading the file");
     let re = Regex::new(r"^\s*(bind|.*(C|c)ategory:)").unwrap();
+
+    raw_contents
+        .split("\n")
+        .filter(|e| re.is_match(e))
+        .map(|e: &str| e.trim().to_string())
+        .collect()
+}
+
+fn get_list_of_i3bindings_from_content(content: Vec<String>) -> Vec<I3Binding> {
+    let mut last_category = "default";
+    let mut bindings: Vec<I3Binding> = Vec::new();
 
     // TODO: "Exec" modifiers are currently being added as part of the command
     let capture_exec =
@@ -55,16 +63,7 @@ pub fn read_config(opt: &AppOptions) -> Vec<I3Binding> {
             .unwrap();
     let capture_category = Regex::new(r".*(C|c)ategory: (?P<category>.+)").unwrap();
 
-    let mut filtered_lines: Vec<&str> = raw_contents
-        .split("\n")
-        .filter(|e| re.is_match(e))
-        .map(|e: &str| e.trim())
-        .collect();
-
-    let mut last_category = "default";
-    let mut bindings: Vec<I3Binding> = Vec::new();
-
-    for line in filtered_lines {
+    for line in &content {
         if capture_category.is_match(line) {
             let caps = capture_category.captures(line).unwrap();
             last_category = caps.name("category").unwrap().as_str();
@@ -85,4 +84,11 @@ pub fn read_config(opt: &AppOptions) -> Vec<I3Binding> {
     }
 
     bindings
+}
+
+pub fn read_config(opt: &AppOptions) -> Vec<I3Binding> {
+    let config_file_to_use = get_proper_config_file(&opt);
+    let mut filtered_lines = get_filtered_config_file_contents(config_file_to_use);
+
+    get_list_of_i3bindings_from_content(filtered_lines)
 }

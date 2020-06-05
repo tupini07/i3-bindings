@@ -21,7 +21,6 @@ fn main() {
     dbg!(config_reader::read_config(&opts));
     /////
 
-
     // let mut main_table = Table::new();
     // main_table.set_titles(row!["Category", "Actual Binding"]);
     //
