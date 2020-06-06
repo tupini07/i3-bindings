@@ -30,6 +30,9 @@ pub struct AppOptions {
     // if specified then only bindings of this category will be shown
     #[clap(short, long)]
     pub exclusive_category: Option<String>,
+    // if specified then prints a table with the available categories
+    #[clap(long)]
+    pub print_categories: bool,
 }
 
 pub fn parse_cli_arguments() -> AppOptions {
@@ -43,6 +46,7 @@ pub fn parse_cli_arguments() -> AppOptions {
     dbg!(&opts.block);
     dbg!(&opts.sort_dim);
     dbg!(&opts.exclusive_category);
+    dbg!(&opts.print_categories);
 
     opts
 }
