@@ -15,13 +15,11 @@ fn main() {
 
     if opts.print_categories {
         println!("Categories: {:?}", bindings.keys());
+    } else if opts.csv {
+        drawers::csv_drawer::draw(bindings);
     } else {
-        if opts.csv {
-            drawers::csv_drawer::draw(bindings);
-        } else {
-            let table = table_adapter::build_table_from_bindings(bindings);
-            drawers::table_drawer::draw(table);
-        }
+        let table = table_adapter::build_table_from_bindings(bindings);
+        drawers::table_drawer::draw(table);
     }
 
     if opts.block {
