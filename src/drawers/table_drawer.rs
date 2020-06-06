@@ -1,8 +1,4 @@
-use crate::cli::{AppOptions, SortDimensions};
-use crate::config_reader::I3Binding;
 use prettytable::{format, Table};
-use std::cmp::Ordering;
-use std::collections::HashMap;
 
 pub fn draw(mut table: Table) {
     table.set_format(

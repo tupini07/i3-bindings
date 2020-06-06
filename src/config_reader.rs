@@ -1,10 +1,12 @@
+extern crate dirs;
 extern crate regex;
+
 use crate::cli::{AppOptions, SortDimensions};
 use regex::Regex;
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
-use std::{env, fs, io, path};
+use std::fs;
 
 #[derive(Debug)]
 pub struct I3Binding {
@@ -31,7 +33,7 @@ fn get_proper_config_file(opt: &AppOptions) -> PathBuf {
 
     let existing_files: Vec<_> = config_files
         .iter()
-        .map(|e| path::Path::new(e))
+        .map(|e| Path::new(e))
         .filter(|&e| e.exists())
         .collect();
 
@@ -48,7 +50,7 @@ fn get_filtered_config_file_contents(file_path: PathBuf) -> Vec<String> {
     let re = Regex::new(r"^\s*(bind|.*(C|c)ategory:)").unwrap();
 
     raw_contents
-        .split("\n")
+        .split('\n')
         .filter(|e| re.is_match(e))
         .map(|e: &str| e.trim().to_string())
         .collect()
@@ -105,7 +107,7 @@ fn get_list_of_i3bindings_from_content(
 
     // sort based on options
     if opts.sort_dim != SortDimensions::NoSort {
-        for (k, bindings) in bindings_map.iter_mut() {
+        for (_k, bindings) in bindings_map.iter_mut() {
             bindings.sort_by(|a, b| match opts.sort_dim {
                 SortDimensions::Type => a.binding_type.cmp(&b.binding_type),
                 SortDimensions::Binding => a.binding.cmp(&b.binding),
@@ -120,7 +122,7 @@ fn get_list_of_i3bindings_from_content(
 
 pub fn read_bindings(opt: &AppOptions) -> HashMap<String, Vec<I3Binding>> {
     let config_file_to_use = get_proper_config_file(&opt);
-    let mut filtered_lines = get_filtered_config_file_contents(config_file_to_use);
+    let filtered_lines = get_filtered_config_file_contents(config_file_to_use);
 
     get_list_of_i3bindings_from_content(filtered_lines, &opt)
 }

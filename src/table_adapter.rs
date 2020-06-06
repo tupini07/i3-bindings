@@ -1,7 +1,5 @@
 use crate::config_reader::I3Binding;
-use crate::main;
 use prettytable::Table;
-use std::cmp::Ordering;
 use std::collections::HashMap;
 
 pub fn build_table_from_bindings(mut bindings_map: HashMap<String, Vec<I3Binding>>) -> Table {
@@ -13,7 +11,7 @@ pub fn build_table_from_bindings(mut bindings_map: HashMap<String, Vec<I3Binding
     sorted_vec.sort_by(|a, b| a.0.cmp(b.0));
 
     for (category, bindings_for_category) in sorted_vec.iter() {
-        if bindings_for_category.len() == 0 {
+        if bindings_for_category.is_empty() {
             continue;
         }
 

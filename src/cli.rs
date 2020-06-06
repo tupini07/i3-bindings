@@ -1,6 +1,5 @@
 extern crate clap;
 use clap::Clap;
-use std::str::FromStr;
 
 #[derive(Clap, PartialEq, Debug)]
 pub enum SortDimensions {

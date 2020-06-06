@@ -1,24 +1,13 @@
 #[macro_use]
 extern crate prettytable;
-extern crate dirs;
 
 mod cli;
 mod config_reader;
 mod drawers;
 mod table_adapter;
 
-use prettytable::{
-    format::{self, TableFormat},
-    Cell, Row, Table,
-};
-
-use crate::cli::AppOptions;
-use std::borrow::Borrow;
-use std::cmp::Ordering;
-use std::collections::HashMap;
-use std::fmt::{Debug, Display};
 use std::io::Read;
-use std::{env, fs, io, path};
+use std::io;
 
 fn main() {
     let opts = cli::parse_cli_arguments();
