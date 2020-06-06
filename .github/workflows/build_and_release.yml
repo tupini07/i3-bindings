@@ -23,4 +23,4 @@ jobs:
         with:
           files: target/release/${{ env.PROJECT_NAME }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEP_GITHUB_TOKEN }}
