@@ -1,0 +1,19 @@
+use crate::config_reader::I3Binding;
+use prettytable::{format, Table};
+use std::collections::HashMap;
+use std::io;
+
+pub fn draw(bindings: HashMap<String, Vec<I3Binding>>) {
+    let mut wtr = csv::WriterBuilder::new()
+        .delimiter(b',')
+        .quote_style(csv::QuoteStyle::NonNumeric)
+        .from_writer(io::stdout());
+
+    for (_k, coll) in bindings {
+        for b in coll {
+            wtr.serialize(b);
+        }
+    }
+
+    wtr.flush().unwrap();
+}

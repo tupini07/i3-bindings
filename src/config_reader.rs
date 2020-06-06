@@ -3,12 +3,14 @@ extern crate regex;
 
 use crate::cli::{AppOptions, SortDimensions};
 use regex::Regex;
+use serde::Serialize;
 use std::cmp::Ordering;
 use std::collections::HashMap;
-use std::path::{Path, PathBuf};
 use std::fs;
+use std::path::{Path, PathBuf};
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "PascalCase")]
 pub struct I3Binding {
     pub category: String,
     pub binding_type: String,

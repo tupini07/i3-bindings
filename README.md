@@ -7,8 +7,6 @@ See [here](https://i3wm.org/docs/userguide.html#configuring) for locations of co
 
 ## Potential-extensions
 
-- provide option to print bindings as _csv_ so that they can potentially be processed by another
-  application.
 - print information about rules:
     - number, which key is $mod`
 
