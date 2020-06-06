@@ -6,8 +6,8 @@ mod config_reader;
 mod drawers;
 mod table_adapter;
 
-use std::io::Read;
 use std::io;
+use std::io::Read;
 
 fn main() {
     let opts = cli::parse_cli_arguments();
@@ -16,10 +16,12 @@ fn main() {
     if opts.print_categories {
         println!("Categories: {:?}", bindings.keys());
     } else {
-        let table = table_adapter::build_table_from_bindings(bindings);
-        drawers::table_drawer::draw(table);
-        // we can use prettytable to export to csv too!
-        // https://github.com/phsym/prettytable-rs#user-content-csv-importexport
+        if opts.csv {
+            drawers::csv_drawer::draw(bindings);
+        } else {
+            let table = table_adapter::build_table_from_bindings(bindings);
+            drawers::table_drawer::draw(table);
+        }
     }
 
     if opts.block {

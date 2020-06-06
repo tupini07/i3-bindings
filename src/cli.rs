@@ -37,15 +37,13 @@ pub struct AppOptions {
 pub fn parse_cli_arguments() -> AppOptions {
     // test command:
     // ./target/debug/i3-bindings -c "some other config.csad" -vv "potato man" test -d
-    let opts: AppOptions = AppOptions::parse();
+    AppOptions::parse()
 
     // Gets a value for config if supplied by user, or defaults to "default.conf"
-    dbg!(&opts.config_path);
-    dbg!(&opts.csv);
-    dbg!(&opts.block);
-    dbg!(&opts.sort_dim);
-    dbg!(&opts.exclusive_category);
-    dbg!(&opts.print_categories);
-
-    opts
+    // dbg!(&opts.config_path);
+    // dbg!(&opts.csv);
+    // dbg!(&opts.block);
+    // dbg!(&opts.sort_dim);
+    // dbg!(&opts.exclusive_category);
+    // dbg!(&opts.print_categories);
 }
