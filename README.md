@@ -15,6 +15,15 @@ If you would like to add some new functionality, or help me make my code mode id
 - optionally wait for input after printing (useful if you want to do something like `alacritty -e i3-bindings -b` to open
   a temporary terminal that shows your bindings)
 
+## Installation
+
+For the moment you can install this in your PC by cloning the repo and running:
+
+```cargo install --path .```
+
+Or you can check the [release](https://github.com/tupini07/i3-bindings/releases) page and see if there is any 
+precompiled executable available for your system, which you can directly download and place it somewhere in your path.
+
 ## Usage
 
 See `i3-bindings --help` for a help message about the available options. However, in most cases you'll be fine with just
