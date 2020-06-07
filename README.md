@@ -5,6 +5,8 @@
 Simple tool that reads the i3 config files and shows a table with the bindings defined therein. See the _Example_ below
 for an example of how the printed table looks like.
 
+If you would like to add some new functionality, or help me make my code mode idiomatic, then issues and PRs are more than welcome :smile:
+
 ## Functionality
 
 - print the keybindings as a table
