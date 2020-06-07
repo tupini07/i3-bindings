@@ -25,13 +25,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-    - name: Initialize workflow variables
-      id: vars
-      shell: bash
-      run: |
-        EXE_suffix="" ; case ${{ matrix.job.target }} in *-pc-windows-*) EXE_suffix=".exe" ;; esac;
-        echo set-output name=EXE_suffix::${EXE_suffix}
-        echo ::set-output name=EXE_suffix::${EXE_suffix}
+      - name: Initialize workflow variables
+        id: vars
+        shell: bash
+        run: |
+          EXE_suffix="" ; case ${{ matrix.job.target }} in *-pc-windows-*) EXE_suffix=".exe" ;; esac;
+          echo set-output name=EXE_suffix::${EXE_suffix}
+          echo ::set-output name=EXE_suffix::${EXE_suffix}
       - name: rust toolchain ~ install
         uses: actions-rs/toolchain@v1
         with:
