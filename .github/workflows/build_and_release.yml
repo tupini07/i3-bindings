@@ -42,11 +42,11 @@ jobs:
           use-cross: true
           command: build
           args: --release --all-features --target=${{ matrix.job.target }} ${{ matrix.job.cargo-options }}
-      - name: Archive executable artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ env.PROJECT_NAME }}-${{ matrix.job.target }}
-          path: target/${{ matrix.job.target }}/release/${{ env.PROJECT_NAME }}${{ steps.vars.outputs.EXE_suffix }}
+#      - name: Archive executable artifacts
+#        uses: actions/upload-artifact@master
+#        with:
+#          name: ${{ env.PROJECT_NAME }}-${{ matrix.job.target }}
+#          path: target/${{ matrix.job.target }}/release/${{ env.PROJECT_NAME }}${{ steps.vars.outputs.EXE_suffix }}
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
