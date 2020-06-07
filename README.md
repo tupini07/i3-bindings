@@ -1,4 +1,7 @@
 # i3-bindings
+
+![CI_build_and_release](https://github.com/tupini07/i3-bindings/workflows/CI_build_and_release/badge.svg?branch=master)
+
 Simple tool that reads the i3 config files and shows a table with the bindings defined therein. See the _Example_ below
 for an example of how the printed table looks like.
 
