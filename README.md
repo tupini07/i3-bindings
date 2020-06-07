@@ -1,20 +1,29 @@
 # i3-bindings
-WIP: Simple tool that reads the i3 config files and shows a table with the bindings defined therein
+Simple tool that reads the i3 config files and shows a table with the bindings defined therein. See the _Example_ below
+for an example of how the printed table looks like.
 
-As a reference see [this](https://github.com/AndrewOlsen/i3-used-keybinds) other project.
+## Functionality
 
-See [here](https://i3wm.org/docs/userguide.html#configuring) for locations of configuration file
+- print the keybindings as a table
+- optionally print them as a `csv` to stdout
+- sort bindings by different criteria
+- optionally wait for input after printing (useful if you want to do something like `alacritty -e i3-bindings -b` to open
+  a temporary terminal that shows your bindings)
 
-## Potential-extensions
+## Usage
 
-- print information about rules:
-    - number, which key is $mod`
+See `i3-bindings --help` for a help message about the available options. However, in most cases you'll be fine with just
+running `i3-bindings` and leave everything with default values.
 
-## How to use
+## How to use format config file
+
+If you want, you can specify _categories_ in your `config` file so that when printing the table bindings are logically grouped.
+However this is not required.
 
 **Categories:** for categories to be printed as in the example below, you need to add comments in
 your i3 config that specify the category for a group of bindings. All bindings below the comment
 will have the specified category until a new one is specified. The default category is `default`.
+
 For example:
 
 ```

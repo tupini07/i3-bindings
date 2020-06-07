@@ -1,6 +1,6 @@
 [package]
 name = "i3-bindings"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Andrea Tupini <tupini07@gmail.com>"]
 edition = "2018"
 
