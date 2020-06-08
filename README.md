@@ -12,6 +12,7 @@ If you would like to add some new functionality, or help me make my code mode id
 - print the keybindings as a table
 - optionally print them as a `csv` to stdout (so that can be easily piped to other software [eg. [BurntSushi/xsv](https://github.com/BurntSushi/xsv)])
 - sort bindings by different criteria
+- only show keybindings in a given category
 - optionally wait for input after printing (useful if you want to do something like `alacritty -e i3-bindings -b` to open
   a temporary terminal that shows your bindings)
 
