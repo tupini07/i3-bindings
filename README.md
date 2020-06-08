@@ -10,10 +10,19 @@ If you would like to add some new functionality, or help me make my code mode id
 ## Functionality
 
 - print the keybindings as a table
-- optionally print them as a `csv` to stdout
+- optionally print them as a `csv` to stdout (so that can be easily piped to other software [eg. [BurntSushi/xsv](https://github.com/BurntSushi/xsv)])
 - sort bindings by different criteria
 - optionally wait for input after printing (useful if you want to do something like `alacritty -e i3-bindings -b` to open
   a temporary terminal that shows your bindings)
+
+## Similar projects
+
+These are some project with a similar functionality (in case you want to check them out). 
+
+- [regolith-linux/remontoire](https://github.com/regolith-linux/remontoire)
+  - Reads config file and shows keybindings in a gtk window
+- [RasmusLindroth/i3keys](https://github.com/RasmusLindroth/i3keys)
+  - Reads your config file and lets you know which combination of keys are still available to be mapped
 
 ## Installation
 
