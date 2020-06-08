@@ -3,7 +3,10 @@ name: CI_build_and_release
 env:
   PROJECT_NAME: i3-bindings
 
-on: [push]
+on:
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build_and_release:
@@ -51,7 +54,6 @@ jobs:
           popd >/dev/null
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: _pkg/${{env.PROJECT_NAME}}-${{ matrix.job.target }}.tar.gz
         env:
