@@ -16,15 +16,6 @@ If you would like to add some new functionality, or help me make my code mode id
 - optionally wait for input after printing (useful if you want to do something like `alacritty -e i3-bindings -b` to open
   a temporary terminal that shows your bindings)
 
-## Similar projects
-
-These are some project with a similar functionality, in case you want to check them out
-
-- [regolith-linux/remontoire](https://github.com/regolith-linux/remontoire)
-  - Reads config file and shows keybindings in a gtk window
-- [RasmusLindroth/i3keys](https://github.com/RasmusLindroth/i3keys)
-  - Reads your config file and lets you know which combination of keys are still available to be mapped
-
 ## Installation
 
 For the moment you can install this in your PC by cloning the repo and running:
@@ -172,3 +163,13 @@ When executed, the tool will read your i3 config file and print something like t
 ║          ║ Symbol  Ctrl+$mod+Right  workspace next                                                                          ║
 ╚══════════╩══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 ```
+
+## Similar projects
+
+These are some project with a similar functionality, in case you want to check them out
+
+- [regolith-linux/remontoire](https://github.com/regolith-linux/remontoire)
+  - Reads config file and shows keybindings in a gtk window
+- [RasmusLindroth/i3keys](https://github.com/RasmusLindroth/i3keys)
+  - Reads your config file and lets you know which combination of keys are still available to be mapped
+
