@@ -17,7 +17,7 @@ If you would like to add some new functionality, or help me make my code mode id
 
 ## Similar projects
 
-These are some project with a similar functionality (in case you want to check them out). 
+These are some project with a similar functionality, in case you want to check them out
 
 - [regolith-linux/remontoire](https://github.com/regolith-linux/remontoire)
   - Reads config file and shows keybindings in a gtk window
@@ -28,7 +28,9 @@ These are some project with a similar functionality (in case you want to check t
 
 For the moment you can install this in your PC by cloning the repo and running:
 
-```cargo install --path .```
+```
+cargo install --path .
+```
 
 Or you can check the [release](https://github.com/tupini07/i3-bindings/releases) page and see if there is any 
 precompiled executable available for your system, which you can directly download and place it somewhere in your path.
