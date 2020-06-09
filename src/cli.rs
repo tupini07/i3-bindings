@@ -1,4 +1,4 @@
-extern crate clap;
+use clap::crate_version;
 use clap::Clap;
 
 #[derive(Clap, PartialEq, Debug)]
@@ -11,7 +11,7 @@ pub enum SortDimensions {
 
 /// Utility that reads your i3 config file and prints a formatted version to the console.
 #[derive(Clap)]
-#[clap(version = "0.1.0")]
+#[clap(version = crate_version!())]
 pub struct AppOptions {
     /// Sets a custom config file. If not specified then the following paths will be checked (in order)
     /// ~/.config/i3/config, ~/.i3/config, /etc/i3/config
@@ -35,11 +35,8 @@ pub struct AppOptions {
 }
 
 pub fn parse_cli_arguments() -> AppOptions {
-    // test command:
-    // ./target/debug/i3-bindings -c "some other config.csad" -vv "potato man" test -d
     AppOptions::parse()
 
-    // Gets a value for config if supplied by user, or defaults to "default.conf"
     // dbg!(&opts.config_path);
     // dbg!(&opts.csv);
     // dbg!(&opts.block);
