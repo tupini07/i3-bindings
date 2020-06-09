@@ -1,6 +1,6 @@
 # i3-bindings
 
-[![Crates.io](https://img.shields.io/crates/v/i3-bindings)](https://crates.io/crates/i3-bindings)
+[![Crates.io](https://img.shields.io/crates/v/i3_bindings)](https://crates.io/crates/i3-bindings)
 
 ![CI_build_and_release](https://github.com/tupini07/i3-bindings/workflows/CI_build_and_release/badge.svg?branch=master)
 
