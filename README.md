@@ -20,13 +20,18 @@ If you would like to add some new functionality, or help me make my code mode id
 
 ## Installation
 
-For the moment you can install this in your PC by cloning the repo and running:
+For the moment you can either clone the repository and install by running:
 
 ```
 cargo install --path .
 ```
+Or you can install directly from crates.io with the command
 
-Or you can check the [release](https://github.com/tupini07/i3-bindings/releases) page and see if there is any
+```
+cargo install i3-bindings
+```
+
+Or, if you don't have `cargo` on your PC, you can check the [release](https://github.com/tupini07/i3-bindings/releases) page and see if there is any
 precompiled executable available for your system, which you can directly download and place it somewhere in your path.
 
 ## Usage
