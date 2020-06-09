@@ -8,6 +8,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/tupini07/i3-bindings"
 repository = "https://github.com/tupini07/i3-bindings"
+documentation = "https://github.com/tupini07/i3-bindings"
 keywords = ["i3", "window-manager", "config"]
 categories = ["command-line-utilities", "config"]
 
