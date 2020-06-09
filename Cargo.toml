@@ -1,10 +1,15 @@
 [package]
 name = "i3-bindings"
 version = "1.0.0"
+description = "Simple tool that reads the i3 config files and shows a table with the bindings defined therein"
 authors = ["Andrea Tupini <tupini07@gmail.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/tupini07/i3-bindings"
+repository = "https://github.com/tupini07/i3-bindings"
+keywords = ["i3", "window-manager", "config"]
+categories = ["command-line-utilities", "config"]
 
 [dependencies]
 prettytable-rs = "^0.8"
