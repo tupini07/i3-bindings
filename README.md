@@ -1,5 +1,7 @@
 # i3-bindings
 
+[![Crates.io](https://img.shields.io/crates/v/i3-bindings)](https://crates.io/crates/i3-bindings)
+
 ![CI_build_and_release](https://github.com/tupini07/i3-bindings/workflows/CI_build_and_release/badge.svg?branch=master)
 
 Simple tool that reads the i3 config files and shows a table with the bindings defined therein. See the _Example_ below
@@ -24,7 +26,7 @@ For the moment you can install this in your PC by cloning the repo and running:
 cargo install --path .
 ```
 
-Or you can check the [release](https://github.com/tupini07/i3-bindings/releases) page and see if there is any 
+Or you can check the [release](https://github.com/tupini07/i3-bindings/releases) page and see if there is any
 precompiled executable available for your system, which you can directly download and place it somewhere in your path.
 
 ## Usage
@@ -203,4 +205,3 @@ These are some project with a similar functionality, in case you want to check t
   - Reads config file and shows keybindings in a gtk window
 - [RasmusLindroth/i3keys](https://github.com/RasmusLindroth/i3keys)
   - Reads your config file and lets you know which combination of keys are still available to be mapped
-
