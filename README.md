@@ -32,6 +32,30 @@ precompiled executable available for your system, which you can directly downloa
 See `i3-bindings --help` for a help message about the available options. However, in most cases you'll be fine with just
 running `i3-bindings` and leave everything with default values.
 
+This is the `help` message printed by the tool:
+
+```
+Utility that reads your i3 config file and prints a formatted version to the console
+
+USAGE:
+    i3-bindings [FLAGS] [OPTIONS]
+
+FLAGS:
+    -b, --block
+        --csv                 whether to provide the output in csv (if not a table will be displayed)
+    -h, --help                Prints help information
+        --print-categories
+    -V, --version             Prints version information
+
+OPTIONS:
+    -c, --config-path <config-path>
+            Sets a custom config file. If not specified then the following paths will be checked (in order)
+            ~/.config/i3/config, ~/.i3/config, /etc/i3/config
+    -e, --exclusive-category <exclusive-category>
+    -s, --sort-dim <sort-dim>
+             [default: binding]  [possible values: command, type, binding, no-sort]
+```
+
 ## How to use format config file
 
 If you want, you can specify _categories_ in your `config` file so that when printing the table bindings are logically grouped.
