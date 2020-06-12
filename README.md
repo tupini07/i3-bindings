@@ -63,6 +63,18 @@ OPTIONS:
              [default: binding]  [possible values: command, type, binding, no-sort]
 ```
 
+## Recommended usage in i3 config file
+
+If you want to quickly explore your bindings then the fastest way is to add a binding to your i3 config which opens a new terminal and pipes the output of the `i3-bindings` to [less](https://www.man7.org/linux/man-pages/man1/less.1.html) or some other reader. Like so:
+
+```
+bindsym $mod+$alt+b exec alacritty -e fish -c "i3-bindings | less"
+```
+
+Note: above, [fish](https://fishshell.com/) is my preferred shell, and [alacritty](https://github.com/alacritty/alacritty) is my terminal emulator, but you can very well replace them with whatever you use. 
+
+If you don't want to use `less` then you can invoke `i3-bindings` with the the block option: `i3-bindings --block`. However using something like `less` is nice because it gives you search and paging features out of the box.
+
 ## How to use format config file
 
 If you want, you can specify _categories_ in your `config` file so that when printing the table bindings are logically grouped.
@@ -99,14 +111,14 @@ When executed, the tool will read your i3 config file and, by default, print a t
 ╔════════════╦══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 ║Category    ║Actual Binding                                                                                                    ║
 ╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
-║Applications║ Symbol  $mod+$alt+b    alacritty -e i3-bindings --block                                                          ║
+║Applications║ Symbol  $mod+$alt+b    alacritty -e fish -c "i3-bindings | less"                                                 ║
 ║            ║ Symbol  $mod+$alt+c    $EDITOR ~/.config/i3/config                                                               ║
 ║            ║ Symbol  $mod+$alt+d    dolphin                                                                                   ║
 ║            ║ Symbol  $mod+$alt+e    $EDITOR                                                                                   ║
 ║            ║ Symbol  $mod+$alt+g    chromium                                                                                  ║
 ║            ║ Symbol  $mod+$alt+q    fish -c ask-and-run-command-in-new-term                                                   ║
 ║            ║ Symbol  $mod+$alt+r    alacritty -e ranger                                                                       ║
-║            ║ Symbol  $mod+$alt+s    spotify-wrapper                                                                           ║
+║            ║ Symbol  $mod+$alt+s    --no-startup-id ~/.shellscripts/start-restart-spotify.fish                                ║
 ║            ║ Code    $mod+34        picom   #34 - [                                                                           ║
 ║            ║ Code    $mod+35        killall picom    #35 - ]                                                                  ║
 ║            ║ Code    $mod+Shift+35  ~/.config/polybar/launch.sh                                                               ║
@@ -122,8 +134,18 @@ When executed, the tool will read your i3 config file and, by default, print a t
 ║            ║ Symbol  XF86KbdBrightnessDown  sudo /home/andrea/.shellscripts/increase-keyboard-backlight.fish -1               ║
 ║            ║ Symbol  XF86KbdBrightnessUp    sudo /home/andrea/.shellscripts/increase-keyboard-backlight.fish 1                ║
 ╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
-║Display     ║ Symbol  XF86MonBrightnessDown  fish -c "increase-display-backlight-by -7"                                        ║
+║Display     ║ Symbol  $mod+p                 fish -c setup-external-display                                                    ║
+║            ║ Symbol  XF86MonBrightnessDown  fish -c "increase-display-backlight-by -7"                                        ║
 ║            ║ Symbol  XF86MonBrightnessUp    fish -c "increase-display-backlight-by 7"                                         ║
+╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
+║Focus       ║ Symbol  $mod+Down   focus down                                                                                   ║
+║            ║ Symbol  $mod+Left   focus left                                                                                   ║
+║            ║ Symbol  $mod+Right  focus right                                                                                  ║
+║            ║ Symbol  $mod+Up     focus up                                                                                     ║
+║            ║ Symbol  $mod+h      focus left                                                                                   ║
+║            ║ Symbol  $mod+j      focus down                                                                                   ║
+║            ║ Symbol  $mod+k      focus up                                                                                     ║
+║            ║ Symbol  $mod+l      focus right                                                                                  ║
 ╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
 ║Layout      ║ Symbol  $mod+Mod1+h  split h                                                                                     ║
 ║            ║ Symbol  $mod+Mod1+v  split v                                                                                     ║
@@ -142,23 +164,6 @@ When executed, the tool will read your i3 config file and, by default, print a t
 ║            ║ Symbol  $mod+n        --no-startup-id systemsettings5                                                            ║
 ║            ║ Symbol  Ctrl+Shift+q  kill                                                                                       ║
 ╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
-║Move Focus  ║ Symbol  $mod+Down         focus down                                                                             ║
-║            ║ Symbol  $mod+Left         focus left                                                                             ║
-║            ║ Symbol  $mod+Right        focus right                                                                            ║
-║            ║ Symbol  $mod+Shift+Down   move down                                                                              ║
-║            ║ Symbol  $mod+Shift+Left   move left                                                                              ║
-║            ║ Symbol  $mod+Shift+Right  move right                                                                             ║
-║            ║ Symbol  $mod+Shift+Up     move up                                                                                ║
-║            ║ Symbol  $mod+Shift+h      move left                                                                              ║
-║            ║ Symbol  $mod+Shift+j      move down                                                                              ║
-║            ║ Symbol  $mod+Shift+k      move up                                                                                ║
-║            ║ Symbol  $mod+Shift+l      move right                                                                             ║
-║            ║ Symbol  $mod+Up           focus up                                                                               ║
-║            ║ Symbol  $mod+h            focus left                                                                             ║
-║            ║ Symbol  $mod+j            focus down                                                                             ║
-║            ║ Symbol  $mod+k            focus up                                                                               ║
-║            ║ Symbol  $mod+l            focus right                                                                            ║
-╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
 ║Resize      ║ Symbol  $mod+r  mode "default"                                                                                   ║
 ║            ║ Symbol  $mod+r  mode "resize"                                                                                    ║
 ║            ║ Symbol  Down    resize grow height 8 px or 2 ppt                                                                 ║
@@ -173,7 +178,16 @@ When executed, the tool will read your i3 config file and, by default, print a t
 ╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
 ║Session     ║ Symbol  $mod+Shift+e  "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'" ║
 ║            ║ Symbol  $mod+Shift+r  restart                                                                                    ║
-║            ║ Symbol  Ctrl+$alt+l   ~/.shellscripts/lock-screen.fish                                                           ║
+║            ║ Symbol  Ctrl+$alt+l   fish -c lock-screen                                                                        ║
+╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
+║Windows     ║ Symbol  $mod+Shift+Down   move down                                                                              ║
+║            ║ Symbol  $mod+Shift+Left   move left                                                                              ║
+║            ║ Symbol  $mod+Shift+Right  move right                                                                             ║
+║            ║ Symbol  $mod+Shift+Up     move up                                                                                ║
+║            ║ Symbol  $mod+Shift+h      move left                                                                              ║
+║            ║ Symbol  $mod+Shift+j      move down                                                                              ║
+║            ║ Symbol  $mod+Shift+k      move up                                                                                ║
+║            ║ Symbol  $mod+Shift+l      move right                                                                             ║
 ╟────────────╫──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
 ║Workspaces  ║ Symbol  $mod+0           workspace 10                                                                            ║
 ║            ║ Symbol  $mod+1           workspace 1                                                                             ║
