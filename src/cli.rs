@@ -1,7 +1,6 @@
-use clap::crate_version;
-use clap::Clap;
+use clap::{ArgEnum, Parser};
 
-#[derive(Clap, PartialEq, Debug)]
+#[derive(Copy, Clone, ArgEnum, PartialEq, Debug)]
 pub enum SortDimensions {
     Command,
     Type,
@@ -10,8 +9,8 @@ pub enum SortDimensions {
 }
 
 /// Utility that reads your i3 config file and prints a formatted version to the console.
-#[derive(Clap)]
-#[clap(version = crate_version!())]
+#[derive(Parser, Debug)]
+#[clap(about, version, author)]
 pub struct AppOptions {
     /// Sets a custom config file. If not specified then the following paths will be checked (in order)
     /// ~/.config/i3/config, ~/.i3/config, /etc/i3/config
@@ -35,7 +34,7 @@ pub struct AppOptions {
 }
 
 pub fn parse_cli_arguments() -> AppOptions {
-    AppOptions::parse()
+    let args =  AppOptions::parse();
 
     // dbg!(&opts.config_path);
     // dbg!(&opts.csv);
@@ -43,4 +42,5 @@ pub fn parse_cli_arguments() -> AppOptions {
     // dbg!(&opts.sort_dim);
     // dbg!(&opts.exclusive_category);
     // dbg!(&opts.print_categories);
+    return args
 }

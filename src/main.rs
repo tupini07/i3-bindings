@@ -1,6 +1,5 @@
 #[macro_use]
 extern crate prettytable;
-extern crate clap;
 
 mod cli;
 mod config_reader;
