@@ -19,22 +19,25 @@ pub struct AppOptions {
     /// whether to provide the output in csv (if not a table will be displayed)
     #[clap(long)]
     pub csv: bool,
-    // whether to wait for input after printing the result (useful for executing in a volatile terminal)
+    /// define delimiter for csv
+    #[clap(short, long, default_value = ",")]
+    pub delimiter: char,
+    /// whether to wait for input after printing the result (useful for executing in a volatile terminal)
     #[clap(short, long)]
     pub block: bool,
-    // the dimension along which to sort the results
+    /// the dimension along which to sort the results
     #[clap(short, long, arg_enum, default_value = "binding")]
     pub sort_dim: SortDimensions,
-    // if specified then only bindings of this category will be shown
+    /// if specified then only bindings of this category will be shown
     #[clap(short, long)]
     pub exclusive_category: Option<String>,
-    // if specified then prints a table with the available categories
+    /// if specified then prints a table with the available categories
     #[clap(long)]
     pub print_categories: bool,
 }
 
 pub fn parse_cli_arguments() -> AppOptions {
-    let args =  AppOptions::parse();
+    AppOptions::parse()
 
     // dbg!(&opts.config_path);
     // dbg!(&opts.csv);
@@ -42,5 +45,4 @@ pub fn parse_cli_arguments() -> AppOptions {
     // dbg!(&opts.sort_dim);
     // dbg!(&opts.exclusive_category);
     // dbg!(&opts.print_categories);
-    return args
 }

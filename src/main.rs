@@ -16,7 +16,7 @@ fn main() {
     if opts.print_categories {
         println!("Categories: {:?}", bindings.keys());
     } else if opts.csv {
-        drawers::csv_drawer::draw(bindings);
+        drawers::csv_drawer::draw(bindings, opts.delimiter);
     } else {
         let table = table_adapter::build_table_from_bindings(bindings);
         drawers::table_drawer::draw(table);

@@ -15,6 +15,7 @@ pub struct I3Binding {
     pub category: String,
     pub binding_type: String,
     pub binding: String,
+    pub runtype: String,
     pub command: String,
 }
 
@@ -65,9 +66,9 @@ fn get_list_of_i3bindings_from_content(
     let mut last_category = "default";
     let mut bindings: Vec<I3Binding> = Vec::new();
 
-    // TODO: "Exec" modifiers are currently being added as part of the command
+    // Binding type modifiers being extracted and added to the table
     let capture_exec =
-        Regex::new(r"(?P<binding_type>bind\w+) (?P<binding>(\w|\$|\+)+) (exec )?(?P<command>.+)")
+        Regex::new(r"(?P<binding_type>bind\w+) (?P<binding>(\w|\$|\+)+) (?:(--release) )?(?P<type>(mode|exec|split|focus|move))? (?P<command>.+)")
             .unwrap();
     let capture_category = Regex::new(r".*(C|c)ategory: (?P<category>.+)").unwrap();
 
@@ -89,10 +90,15 @@ fn get_list_of_i3bindings_from_content(
                 "bindcode" => "Code",
                 _ => "Unknown",
             };
+            let run_type = match caps.name("type") {
+                None => "",
+                _ => caps.name("type").unwrap().as_str()
+            };
             bindings.push(I3Binding {
                 category: last_category.to_string(),
                 binding_type: binding_type.to_string(),
                 binding: caps.name("binding").unwrap().as_str().to_string(),
+                runtype: run_type.to_string(),
                 command: caps.name("command").unwrap().as_str().to_string(),
             });
         }
