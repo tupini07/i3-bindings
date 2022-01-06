@@ -90,7 +90,7 @@ fn get_list_of_i3bindings_from_content(
                 "bindcode" => "Code",
                 _ => "Unknown",
             };
-            let _run_type = match caps.name("type") {
+            let run_type = match caps.name("type") {
                 None => "",
                 _ => caps.name("type").unwrap().as_str()
             };
@@ -98,7 +98,7 @@ fn get_list_of_i3bindings_from_content(
                 category: last_category.to_string(),
                 binding_type: binding_type.to_string(),
                 binding: caps.name("binding").unwrap().as_str().to_string(),
-                runtype: _run_type.to_string(),
+                runtype: run_type.to_string(),
                 command: caps.name("command").unwrap().as_str().to_string(),
             });
         }
