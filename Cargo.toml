@@ -1,6 +1,6 @@
 [package]
 name = "i3-bindings"
-version = "1.0.1"
+version = "1.1.0"
 description = "Simple tool that reads the i3 config files and shows a table with the bindings defined therein"
 authors = ["Andrea Tupini <tupini07@gmail.com>"]
 edition = "2018"
