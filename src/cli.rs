@@ -22,6 +22,9 @@ pub struct AppOptions {
     /// define delimiter for csv
     #[clap(short, long, default_value = ",")]
     pub delimiter: char,
+    /// whether to provide the markdow table
+    #[clap(long)]
+    pub md: bool,
     /// whether to wait for input after printing the result (useful for executing in a volatile terminal)
     #[clap(short, long)]
     pub block: bool,

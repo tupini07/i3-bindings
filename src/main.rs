@@ -17,6 +17,8 @@ fn main() {
         println!("Categories: {:?}", bindings.keys());
     } else if opts.csv {
         drawers::csv_drawer::draw(bindings, opts.delimiter);
+    } else if opts.md {
+        drawers::md_trable_drawer::draw(bindings);
     } else {
         let table = table_adapter::build_table_from_bindings(bindings);
         drawers::table_drawer::draw(table);
